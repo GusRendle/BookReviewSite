@@ -22,7 +22,7 @@ class BookFactory extends Factory
             'author' => $this->faker->name(),
             'description' => $this->faker->realText(150),
             'publisher' => $this->faker->company(),
-            'publishYear' => $this->faker->year(),
+            'publish_year' => $this->faker->year(),
         ];
     }
 }

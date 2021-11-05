@@ -19,7 +19,7 @@ class CreateBooksTable extends Migration
             $table->string('author');
             $table->string('description');
             $table->string('publisher');
-            $table->year('publishYear');
+            $table->year('publish_year');
             $table->timestamps();
 
             $table->primary('ISBN');

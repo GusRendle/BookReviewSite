@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\User;
 use App\Models\Comment;
 use App\Models\Review;
 use Illuminate\Database\Eloquent\Factories\Factory;
@@ -17,7 +18,7 @@ class CommentFactory extends Factory
     {
         return [
             'review_id' => Review::inRandomOrder()->first()->id,
-            'author' => $this->faker->name(),
+            'user_id' => User::inRandomOrder()->first()->id,
             'content' => $this->faker->realText(150),
             'postDate' => $this->faker->dateTime(),
         ];

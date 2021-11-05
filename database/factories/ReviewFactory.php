@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\User;
 use App\Models\Book;
 use App\Models\Review;
 use Illuminate\Database\Eloquent\Factories\Factory;
@@ -19,7 +20,7 @@ class ReviewFactory extends Factory
         
         return [            
             'title' => str_replace(['?', '!','\'','.',','], '', $words),
-            'author' => $this->faker->name(),
+            'user_id' => User::inRandomOrder()->first()->id,
             'ISBN' => Book::inRandomOrder()->first()->ISBN,
             'content' => $this->faker->realText(150),
             'postDate' => $this->faker->dateTime(),

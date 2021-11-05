@@ -15,11 +15,14 @@ class CreateCommentsTable extends Migration
     {
         Schema::create('comments', function (Blueprint $table) {
             $table->id();
-            $table->id('postID');
+            $table->bigInteger('review_id')->unsigned();
             $table->string('author');
             $table->string('content');
             $table->date('postDate');
             $table->timestamps();
+
+            $table->foreign('review_id')->references('id')->on('reviews')
+                ->onDelete('cascade')->onUpdate('cascade');
         });
     }
 

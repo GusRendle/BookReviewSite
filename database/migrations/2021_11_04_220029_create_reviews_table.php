@@ -15,9 +15,9 @@ class CreateReviewsTable extends Migration
     {
         Schema::create('reviews', function (Blueprint $table) {
             $table->id();
+            $table->bigInteger('ISBN')->unsigned();
             $table->string('title');
             $table->string('author');
-            $table->string('ISBN');
             $table->string('content');
             $table->date('postDate');
             $table->timestamps();

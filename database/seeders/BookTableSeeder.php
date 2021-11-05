@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\User;
 use App\Models\Book;
 use Illuminate\Database\Seeder;
 
@@ -15,5 +16,14 @@ class BookTableSeeder extends Seeder
     public function run()
     {
         $books = Book::factory()->count(30)->create();
+
+        $bookList = Book::all();
+
+        User::all()->each(function ($user) use ($books) { 
+            $user->books()->attach(
+                $books->random(rand(1, 3))->pluck('ISBN')->toArray()
+            ); 
+        });
+
     }
 }

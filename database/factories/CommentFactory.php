@@ -17,7 +17,7 @@ class CommentFactory extends Factory
     public function definition()
     {
         return [
-            'review_id' => Review::inRandomOrder()->first()->id,
+            'commentable_id' => Review::inRandomOrder()->first()->id,
             'user_id' => User::inRandomOrder()->first()->id,
             'content' => $this->faker->realText(150),
             'postDate' => $this->faker->dateTime(),

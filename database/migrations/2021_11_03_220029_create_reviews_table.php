@@ -21,6 +21,12 @@ class CreateReviewsTable extends Migration
             $table->string('content');
             $table->date('postDate');
             $table->timestamps();
+
+            $table->foreign('user_id')->references('id')->on('users')
+                ->onDelete('cascade')->onUpdate('cascade');
+
+            $table->foreign('ISBN')->references('ISBN')->on('books')
+                ->onDelete('cascade')->onUpdate('cascade');
         });
     }
 

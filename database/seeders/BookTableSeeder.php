@@ -17,8 +17,6 @@ class BookTableSeeder extends Seeder
     {
         $books = Book::factory()->count(30)->create();
 
-        $bookList = Book::all();
-
         User::all()->each(function ($user) use ($books) { 
             $user->books()->attach(
                 $books->random(rand(1, 3))->pluck('ISBN')->toArray()

@@ -11,7 +11,7 @@ class Review extends Model
 
     public function comments()
     {
-        return $this->hasMany(Comment::class);
+        return $this->morphMany('App\Models\Comment', 'commentable');
     }
 
     public function book()

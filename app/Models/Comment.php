@@ -9,9 +9,9 @@ class Comment extends Model
 {
     use HasFactory;
 
-    public function review()
+    public function commentable()
     {
-        return $this->belongsTo(Review::class);
+        return $this->morphTo();
     }
 
     public function user()

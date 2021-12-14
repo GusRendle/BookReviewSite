@@ -14,7 +14,7 @@ class ReviewTableSeeder extends Seeder
      */
     public function run()
     {
-        $review = Review::factory()->count(30)->create();
+        $review = Review::factory()->count(50)->hasComments(3)->create();
 
         // $reviews = Review::factory()->count(100)
         // ->has(Comment::factory()->count(3), 'comments')

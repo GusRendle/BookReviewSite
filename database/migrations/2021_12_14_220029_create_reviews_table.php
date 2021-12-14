@@ -22,7 +22,7 @@ class CreateReviewsTable extends Migration
             $table->date('postDate');
             $table->timestamps();
 
-            $table->foreign('page_id')->references('user_id')->on('pages')
+            $table->foreign('page_id')->references('id')->on('pages')
                 ->onDelete('cascade')->onUpdate('cascade');
 
             $table->foreign('ISBN')->references('ISBN')->on('books')

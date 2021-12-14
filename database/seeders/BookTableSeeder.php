@@ -15,7 +15,7 @@ class BookTableSeeder extends Seeder
      */
     public function run()
     {
-        $books = Book::factory()->count(30)->create();
+        $books = Book::factory()->count(40)->create();
 
         User::all()->each(function ($user) use ($books) { 
             $user->books()->attach(

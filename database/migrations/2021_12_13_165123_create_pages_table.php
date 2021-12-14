@@ -14,10 +14,13 @@ class CreatePagesTable extends Migration
     public function up()
     {
         Schema::create('pages', function (Blueprint $table) {
-            $table->foreignId('user_id')->constrained();
+            $table->id();
             $table->string('title');
             $table->string('description');
             $table->timestamps();
+
+            $table->foreign('id')->references('id')->on('users')
+            ->onDelete('cascade')->onUpdate('cascade');
         });
     }
 

@@ -14,6 +14,7 @@ class PageTableSeeder extends Seeder
      */
     public function run()
     {
-        $page = Page::factory()->count(30)->create();
+        //$page = Page::factory()->count(30)->hasComments(3)->create();
+        $page = Page::factory()->count(30)->hasComments(3, function (array $attributes, Page $page) {return ['commentable_id' => $page->user_id];})->create();
     }
 }

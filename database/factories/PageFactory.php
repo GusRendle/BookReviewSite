@@ -18,7 +18,7 @@ class PageFactory extends Factory
         $words = $this->faker->realText(30);
 
         return [
-            'user_id' => $this->faker->unique()->numberBetween(1, User::count()),
+            'id' => $this->faker->unique()->numberBetween(1, User::count()),
             'title' => str_replace(['?', '!','\'','.',','], '', $words),
             'description' => $this->faker->realText(150),
         ];

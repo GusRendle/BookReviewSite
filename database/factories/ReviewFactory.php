@@ -20,7 +20,7 @@ class ReviewFactory extends Factory
         
         return [            
             'ISBN' => Book::inRandomOrder()->first()->ISBN,
-            'page_id' => Page::inRandomOrder()->first()->user_id,
+            'page_id' => Page::inRandomOrder()->first()->id,
             'title' => str_replace(['?', '!','\'','.',','], '', $words),
             'content' => $this->faker->realText(150),
             'postDate' => $this->faker->dateTime(),

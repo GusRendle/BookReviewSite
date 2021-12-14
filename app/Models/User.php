@@ -54,6 +54,6 @@ class User extends Authenticatable
 
     public function page()
     {
-        return $this->hasOne(Page::class);
+        return $this->hasOne(Page::class, 'id');
     }
 }

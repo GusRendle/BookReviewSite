@@ -2,12 +2,11 @@
 
 namespace Database\Factories;
 
+use App\Models\User;
 use App\Models\Page;
-use App\Models\Book;
-use App\Models\Review;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
-class ReviewFactory extends Factory
+class PageFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -17,13 +16,11 @@ class ReviewFactory extends Factory
     public function definition()
     {
         $words = $this->faker->realText(30);
-        
-        return [            
-            'ISBN' => Book::inRandomOrder()->first()->ISBN,
-            'page_id' => Page::inRandomOrder()->first()->user_id,
+
+        return [
+            'user_id' => $this->faker->unique()->numberBetween(1, User::count()),
             'title' => str_replace(['?', '!','\'','.',','], '', $words),
-            'content' => $this->faker->realText(150),
-            'postDate' => $this->faker->dateTime(),
+            'description' => $this->faker->realText(150),
         ];
     }
 }

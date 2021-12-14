@@ -19,8 +19,8 @@ class Review extends Model
         return $this->belongsTo(Book::class);
     }
 
-    public function user()
+    public function page()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(Page::class);
     }
 }

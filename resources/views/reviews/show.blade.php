@@ -10,6 +10,17 @@
 
 <p> {{$review->content}} </p>
 
+<form method="POST" 
+    action="{{ route('reviews.destroy', ['id' => $review->id]) }}"> 
+
+    @csrf
+
+    @method('DELETE')
+
+    <button type="submit"> Delete </button>
+
+</form>
+
 <h4> Comments </h4>
 <ul>
 @foreach($review->comments as $comment)

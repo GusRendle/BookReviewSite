@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\BookController;
+use App\Http\Controllers\CommentController;
 
 /*
 |--------------------------------------------------------------------------
@@ -42,5 +43,7 @@ Route::get('/books/create',[BookController::class, 'create'])->name('books.creat
 Route::post('/books',[BookController::class, 'store'])->name('books.store');
 Route::get('/books/{ISBN}',[BookController::class, 'show'])->name('books.show');
 Route::delete('/books/{ISBN}',[BookController::class, 'destroy'])->name('books.destroy');
+
+Route::post('/comment/store',[CommentController::class, 'store'])->name('comment.add');
 
 require __DIR__.'/auth.php';

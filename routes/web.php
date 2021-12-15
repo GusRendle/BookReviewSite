@@ -28,7 +28,8 @@ Route::get('/dashboard', function () {
 Route::get('/pages',[PageController::class, 'index'])->name('pages.index');
 Route::get('/page/{id}',[PageController::class, 'show'])->name('pages.show');
 
-Route::get('/review/{id}',[ReviewController::class, 'show'])->name('review.show');
+Route::get('/reviews',[ReviewController::class, 'index'])->name('reviews.index');
+Route::get('/review/{id}',[ReviewController::class, 'show'])->name('reviews.show');
 
 Route::get('/books',[BookController::class, 'index'])->name('books.index');
 Route::get('/book/{ISBN}',[BookController::class, 'show'])->name('books.show');

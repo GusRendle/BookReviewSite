@@ -64,10 +64,8 @@ class ReviewController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Review $review)
     {
-        $review = Review::findOrFail($id);
-
         return view('reviews.show',['review' => $review]);
     }
 
@@ -100,9 +98,8 @@ class ReviewController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Review $review)
     {
-        $review = Review::findOrFail($id);
         $review->delete();
 
         return redirect()->route('reviews.index')->with('message', 'Review was deleted');

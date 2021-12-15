@@ -15,7 +15,7 @@
 <h4> Reviews of {{$book->title}}</h4>
 <ul>
 @foreach($book->reviews as $review)
-    <li><a href="{{ route('review.show',['id'=>$review->id]) }}">{{$review->title}} - {{$review->page->user->name}}</a></li>
+    <li><a href="{{ route('reviews.show',['id'=>$review->id]) }}">{{$review->title}} - {{$review->page->user->name}}</a></li>
 @endforeach
 </ul>
 

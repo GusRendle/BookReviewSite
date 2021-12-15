@@ -49,6 +49,7 @@ class RegisteredUserController extends Controller
 
         Auth::login($user);
 
-        return redirect(RouteServiceProvider::HOME);
+        session()->flash('message', 'User created successfully');
+        return redirect()->route('pages.index');
     }
 }

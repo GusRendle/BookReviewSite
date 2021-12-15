@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 use App\Models\Review;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Carbon;
 
 class ReviewController extends Controller
 {
@@ -37,17 +39,17 @@ class ReviewController extends Controller
     public function store(Request $request)
     {
         $validatedData = $request->validate([
-            'ISBN' => 'required|integer|size:13',
+            'ISBN' => 'required|integer|digits:13',
             'title'=> 'required|string|max:255',
             'content' => 'required|string|max:255',    
         ]);
 
         $a= new Review;
         $a->ISBN = $validatedData['ISBN'];
-        $a->page_id =
+        $a->page_id = Auth::user()->id;
         $a->title = $validatedData['title'];
         $a->content = $validatedData['content'];
-        $a->postDate = Carbon\Carbon::now();
+        $a->postDate = Carbon::now();
         $a->save();
 
         session()->flash('message', 'Review posted successfully');

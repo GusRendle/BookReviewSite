@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use App\Models\Page;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class PageController extends Controller
 {
@@ -25,7 +26,7 @@ class PageController extends Controller
      */
     public function create()
     {
-        //
+        return view('pages.create');
     }
 
     /**
@@ -36,7 +37,19 @@ class PageController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validatedData = $request->validate([
+            'title'=> 'required|string|max:255',
+            'description' => 'required|string|max:255',    
+        ]);
+
+        $a= new Page;
+        $a->id = Auth::user()->id;
+        $a->title = $validatedData['title'];
+        $a->description = $validatedData['description'];
+        $a->save();
+
+        session()->flash('message', 'Page created successfully');
+        return view('pages.index');
     }
 
     /**

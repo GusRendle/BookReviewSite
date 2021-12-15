@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\Models\Review;
+use App\Models\Book;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -27,7 +28,8 @@ class ReviewController extends Controller
      */
     public function create()
     {
-        return view('reviews.create');
+        $books = Book::orderBy('title', 'asc')->get();
+        return view('reviews.create', ['books' => $books]);
     }
 
     /**

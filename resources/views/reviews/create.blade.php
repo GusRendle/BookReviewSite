@@ -7,7 +7,18 @@
 
         @csrf
 
-        <p>ISBN: <input type="text" name="ISBN" value="{{ old('ISBN') }}"></p>
+        <p>Book: 
+            <select name="ISBN">
+                 @foreach ($books as $book)
+                    <option value="{{ $book->ISBN }}"
+                        @if ($book->ISBN == old('ISBN'))
+                            selected="selected"
+                        @endif
+                        >{{ $book->title }}
+                    </option>
+                 @endforeach
+            </select>
+        </p>
 
         <p>Title: <input type="text" name="title" value="{{ old('title') }}"></p>
 

@@ -31,7 +31,7 @@
     </ul>
 
     <h4> New Comment </h4>
-    Content: <input type="text" id="input" v-model="newCommentContent">
+    <input type="text" id="input" v-model="newCommentContent">
     <button @click="createComment">Post</button>
 </div>
 

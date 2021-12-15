@@ -25,7 +25,7 @@ class ReviewController extends Controller
      */
     public function create()
     {
-        //
+        return view('reviews.create');
     }
 
     /**
@@ -36,7 +36,22 @@ class ReviewController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validatedData = $request->validate([
+            'ISBN' => 'required|integer|size:13',
+            'title'=> 'required|string|max:255',
+            'content' => 'required|string|max:255',    
+        ]);
+
+        $a= new Review;
+        $a->ISBN = $validatedData['ISBN'];
+        $a->page_id =
+        $a->title = $validatedData['title'];
+        $a->content = $validatedData['content'];
+        $a->postDate = Carbon\Carbon::now();
+        $a->save();
+
+        session()->flash('message', 'Review posted successfully');
+        return redirect()->route('reviews.index');
     }
 
     /**

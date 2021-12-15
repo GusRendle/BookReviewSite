@@ -23,7 +23,7 @@ class ReviewFactory extends Factory
             'page_id' => Page::inRandomOrder()->first()->id,
             'title' => str_replace(['?', '!','\'','.',','], '', $words),
             'content' => $this->faker->realText(150),
-            'postDate' => $this->faker->dateTime(),
+            'postDate' => $this->faker->dateTimeBetween($startDate = '-15 years', $endDate = 'now', $timezone = null),
         ];
     }
 }

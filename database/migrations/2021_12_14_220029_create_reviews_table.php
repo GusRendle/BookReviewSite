@@ -19,7 +19,7 @@ class CreateReviewsTable extends Migration
             $table->bigInteger('page_id')->unsigned();
             $table->string('title');
             $table->string('content');
-            $table->date('postDate');
+            $table->timestamp('postDate');
             $table->timestamps();
 
             $table->foreign('page_id')->references('id')->on('pages')

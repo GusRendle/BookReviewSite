@@ -3,7 +3,7 @@
 @section('title', 'All Reviews')
 
 @section('content')
-    {{-- <a href="{{route('users.create')}}"> Register a New User </a> --}}
+    <a href="{{route('reviews.create')}}"> Create a new review </a>
     <ul>
         @foreach($reviews as $review)
             <li><a href="{{ route('reviews.show',['id'=>$review->id]) }}">{{$review->page->user->name}}'s review of {{$review->book->title}}</a></li>

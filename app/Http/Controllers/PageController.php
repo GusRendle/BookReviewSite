@@ -58,10 +58,8 @@ class PageController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Page $page)
     {
-        $page = Page::findOrFail($id);
-
         return view('pages.show',['page' => $page]);
     }
 
@@ -94,8 +92,10 @@ class PageController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Page $page)
     {
-        //
+        $page->delete();
+
+        return redirect()->route('pages.index')->with('message', 'Page was deleted');
     }
 }

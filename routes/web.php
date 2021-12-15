@@ -28,7 +28,8 @@ Route::get('/dashboard', function () {
 Route::get('/pages',[PageController::class, 'index'])->name('pages.index');
 Route::get('/pages/create',[PageController::class, 'create'])->name('pages.create');
 Route::post('/pages',[PageController::class, 'store'])->name('pages.store');
-Route::get('/pages/{id}',[PageController::class, 'show'])->name('pages.show');
+Route::get('/pages/{page}',[PageController::class, 'show'])->name('pages.show');
+Route::delete('/pages/{page}',[PageController::class, 'destroy'])->name('pages.destroy');
 
 Route::get('/reviews',[ReviewController::class, 'index'])->name('reviews.index');
 Route::get('/reviews/create',[ReviewController::class, 'create'])->name('reviews.create');
@@ -40,5 +41,6 @@ Route::get('/books',[BookController::class, 'index'])->name('books.index');
 Route::get('/books/create',[BookController::class, 'create'])->name('books.create');
 Route::post('/books',[BookController::class, 'store'])->name('books.store');
 Route::get('/books/{ISBN}',[BookController::class, 'show'])->name('books.show');
+Route::delete('/books/{ISBN}',[BookController::class, 'destroy'])->name('books.destroy');
 
 require __DIR__.'/auth.php';

@@ -16,14 +16,14 @@
 <h4> {{$page->user->name}}'s book reviews </h4>
 <ul>
 @foreach($page->reviews as $review)
-    <li><a href="{{ route('reviews.show',['id'=>$review->id]) }}">{{$review->book->title}} - {{$review->title}}</a></li>
+    <li><a href="{{ route('reviews.show',['review'=>$review->id]) }}">{{$review->book->title}} - {{$review->title}}</a></li>
 @endforeach
 </ul>
 
 <h4> Comments </h4>
 <ul>
 @foreach($page->comments as $comment)
-    <li><a href="{{ route('pages.show',['id'=>$comment->user->page->id]) }}">{{$comment->user->name}}</a> @ {{$comment->postDate}}: {{$comment->content}}</li>
+    <li><a href="{{ route('pages.show',['page'=>$comment->user->page->id]) }}">{{$comment->user->name}}</a> @ {{$comment->postDate}}: {{$comment->content}}</li>
 @endforeach
 </ul>
 

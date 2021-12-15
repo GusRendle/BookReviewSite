@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PageController;
+use App\Http\Controllers\ReviewController;
+use App\Http\Controllers\BookController;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,5 +27,10 @@ Route::get('/dashboard', function () {
 
 Route::get('/pages',[PageController::class, 'index'])->name('pages.index');
 Route::get('/page/{id}',[PageController::class, 'show'])->name('pages.show');
+
+Route::get('/review/{id}',[ReviewController::class, 'show'])->name('review.show');
+
+Route::get('/books',[BookController::class, 'index'])->name('books.index');
+Route::get('/book/{ISBN}',[BookController::class, 'show'])->name('books.show');
 
 require __DIR__.'/auth.php';

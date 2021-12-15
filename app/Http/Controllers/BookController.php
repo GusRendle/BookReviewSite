@@ -1,11 +1,11 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Models\Page;
+use App\Models\Book;
 
 use Illuminate\Http\Request;
 
-class PageController extends Controller
+class BookController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,8 +14,8 @@ class PageController extends Controller
      */
     public function index()
     {
-        $pages = Page::all();
-        return view('pages.index', ['pages' => $pages]);
+        $books = Book::all();
+        return view('books.index', ['books' => $books]);
     }
 
     /**
@@ -45,11 +45,11 @@ class PageController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($ISBN)
     {
-        $page = Page::findOrFail($id);
+        $book = Book::where('ISBN','=',$ISBN)->firstOrFail();
 
-        return view('pages.show',['page' => $page]);
+        return view('books.show',['book' => $book]);
     }
 
     /**

@@ -1,11 +1,11 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Models\Page;
+use App\Models\Review;
 
 use Illuminate\Http\Request;
 
-class PageController extends Controller
+class ReviewController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,8 +14,7 @@ class PageController extends Controller
      */
     public function index()
     {
-        $pages = Page::all();
-        return view('pages.index', ['pages' => $pages]);
+        //
     }
 
     /**
@@ -47,9 +46,9 @@ class PageController extends Controller
      */
     public function show($id)
     {
-        $page = Page::findOrFail($id);
+        $review = Review::findOrFail($id);
 
-        return view('pages.show',['page' => $page]);
+        return view('reviews.show',['review' => $review]);
     }
 
     /**

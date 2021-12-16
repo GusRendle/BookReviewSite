@@ -14,12 +14,11 @@
 <p> {{$review->content}} </p>
 
 <form method="POST" 
-    action="{{ route('reviews.destroy', ['review' => $review->id]) }}"> 
 
+    action="{{ route('reviews.destroy', ['review' => $review->id]) }}"> 
     @csrf
 
     @method('DELETE')
-
     <button type="submit"> Delete </button>
 
 </form>

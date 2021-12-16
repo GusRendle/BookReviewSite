@@ -15,6 +15,10 @@
     <li> Email Verified: {{$page->user->email_verified_at ?? 'Unknown'}}</li>
 </ul>
 
+<a href="{{ route('pages.edit',['page'=>$page->id]) }}" >
+    <button type="button" class="label label-default pull-xs-right">Edit</button>
+</a>
+
 <h4> {{$page->user->name}}'s book reviews </h4>
 <ul>
 @foreach($page->reviews as $review)

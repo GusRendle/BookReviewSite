@@ -48,8 +48,7 @@ class PageController extends Controller
         $a->description = $validatedData['description'];
         $a->save();
 
-        session()->flash('message', 'Page created successfully');
-        return view('pages.index');
+        return redirect()->route('pages.index')->with('message', 'Page created successfully');
     }
 
     /**
@@ -69,9 +68,9 @@ class PageController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Page $page)
     {
-        //
+        return view('pages.edit',['page' => $page]);
     }
 
     /**
@@ -81,9 +80,20 @@ class PageController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Page $page)
     {
-        //
+        $validatedData = $request->validate([
+            'title'=> 'required|string|max:255',
+            'description' => 'required|string|max:255',    
+        ]);
+
+        $a = $page;
+        $a->id = $page->id;
+        $a->title = $validatedData['title'];
+        $a->description = $validatedData['description'];
+        $a->save();
+
+        return redirect()->route('pages.index')->with('message', 'Page updated successfully');
     }
 
     /**

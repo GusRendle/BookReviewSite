@@ -29,7 +29,9 @@ Route::get('/dashboard', function () {
 Route::get('/pages',[PageController::class, 'index'])->name('pages.index');
 Route::get('/pages/create',[PageController::class, 'create'])->name('pages.create');
 Route::post('/pages',[PageController::class, 'store'])->name('pages.store');
+Route::put('/pages/{page}/update',[PageController::class, 'update'])->name('pages.update');
 Route::get('/pages/{page}',[PageController::class, 'show'])->name('pages.show');
+Route::get('/pages/{page}/edit',[PageController::class, 'edit'])->name('pages.edit');
 Route::delete('/pages/{page}',[PageController::class, 'destroy'])->name('pages.destroy');
 
 Route::get('/reviews',[ReviewController::class, 'index'])->name('reviews.index');

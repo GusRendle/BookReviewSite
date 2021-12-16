@@ -28,9 +28,24 @@
 
 <h4> Comments </h4>
 <div id="root">
-    <ul>
-        <li v-for="comment in comments">@{{ comment.content }}</li>
-    </ul>
+    <div>
+        <div id="comment" v-for="comment in comments">
+            <div>
+                <b>@{{ comment.user_id }} on @{{ comment.postDate }}</b>
+            </div>
+            <div>
+                @{{ comment.content }}
+            </div>
+            <div>
+                <a href="{{ route('pages.edit',['page'=>$page->id]) }}" >
+                    <button type="button" class="label label-default pull-xs-right">Edit</button>
+                </a>
+                <a href="{{ route('pages.edit',['page'=>$page->id]) }}" >
+                    <button type="button" class="label label-default pull-xs-right">Delete</button>
+                </a>
+            </div>
+        </div>
+    </div>
 
     <h4> New Comment </h4>
     <input type="text" id="input" v-model="newCommentContent">

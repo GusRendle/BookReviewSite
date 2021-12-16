@@ -10,6 +10,11 @@ class CommentController extends Controller
     public function apiIndex($id, $poly)
     {
         $comments = Comment::where([['commentable_id', $id],['commentable_type', 'App\Models\\' . $poly]])->get();
+
+        foreach ($comments as $comment) {
+            $comment->user_id = $comment->user->name;
+        }
+
         return $comments;
     }
 

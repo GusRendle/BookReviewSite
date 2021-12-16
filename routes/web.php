@@ -5,6 +5,7 @@ use App\Http\Controllers\PageController;
 use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\BookController;
 use App\Http\Controllers\CommentController;
+use App\Http\Controllers\PoemistController;
 
 /*
 |--------------------------------------------------------------------------
@@ -47,5 +48,7 @@ Route::get('/books/{ISBN}',[BookController::class, 'show'])->name('books.show');
 Route::delete('/books/{ISBN}',[BookController::class, 'destroy'])->name('books.destroy');
 
 Route::post('/comment/store',[CommentController::class, 'store'])->name('comment.add');
+
+Route::get('/poem',[PoemistController::class, 'index'])->name('poem.index');
 
 require __DIR__.'/auth.php';

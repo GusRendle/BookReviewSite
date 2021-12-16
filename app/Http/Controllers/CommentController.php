@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 use App\Models\Comment;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Carbon;
 
 class CommentController extends Controller
 {
@@ -18,7 +20,7 @@ class CommentController extends Controller
         return $comments;
     }
 
-    public function apiStore(Request $request){
+    public function apiStore(Request $request, $poly){
         $validatedData = $request->validate([
             'content' => 'required|string|max:255',    
         ]);
@@ -29,6 +31,7 @@ class CommentController extends Controller
         $c->content = $validatedData['content'];
         $c->postDate = Carbon::now();
         $c->save();
+        $c->user_id = Auth::user()->name;
         return $c;
     }
 

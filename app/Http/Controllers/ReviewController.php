@@ -11,27 +11,6 @@ use Illuminate\Support\Carbon;
 
 class ReviewController extends Controller
 {
-
-    public function apiIndex($id)
-    {
-        $comments = Comment::where('commentable_id', $id)->where('commentable_type', 'App\Models\Review')->get();
-        return $comments;
-    }
-
-    public function apiStore(Request $request){
-        $validatedData = $request->validate([
-            'content' => 'required|string|max:255',    
-        ]);
-        $c = new Comment();
-        $c->commentable_type = 'App\Models\Review';
-        $c->commentable_id = $request['commentable_id'];
-        $c->user_id = Auth::user()->id;
-        $c->content = $validatedData['content'];
-        $c->postDate = Carbon::now();
-        $c->save();
-        return $c;
-    }
-
     /**
      * Display a listing of the resource.
      *

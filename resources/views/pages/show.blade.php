@@ -42,7 +42,7 @@
         },
         methods: {
             createComment: function(){
-                axios.post("{{ route('api.comments.store') }}",
+                axios.post("{{ route('api.comments.store',['poly'=>'page']) }}",
                 {
                     content: this.newCommentContent,
                     commentable_id: "{{$page->id}}"
@@ -57,7 +57,7 @@
             }
         },
         mounted(){
-            axios.get("{{route('api.comments.index',['id'=>$page->id])}}")
+            axios.get("{{route('api.comments.index',['id'=>$page->id, 'poly'=>'page'])}}")
             .then(response=>{
                 this.comments = response.data;
             })

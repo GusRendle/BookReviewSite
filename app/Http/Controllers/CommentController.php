@@ -1,13 +1,32 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Models\Page;
+use App\Models\Comment;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 
-class PageController extends Controller
+class CommentController extends Controller
 {
+    public function apiIndex($id, $poly)
+    {
+        $comments = Comment::where([['commentable_id', $id],['commentable_type', 'App\Models\\' . $poly]])->get();
+        return $comments;
+    }
+
+    public function apiStore(Request $request){
+        $validatedData = $request->validate([
+            'content' => 'required|string|max:255',    
+        ]);
+        $c = new Comment();
+        $c->commentable_type = 'App\Models\\' . $poly;
+        $c->commentable_id = $request['commentable_id'];
+        $c->user_id = Auth::user()->id;
+        $c->content = $validatedData['content'];
+        $c->postDate = Carbon::now();
+        $c->save();
+        return $c;
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -15,8 +34,7 @@ class PageController extends Controller
      */
     public function index()
     {
-        $pages = Page::all();
-        return view('pages.index', ['pages' => $pages]);
+        //
     }
 
     /**
@@ -26,7 +44,7 @@ class PageController extends Controller
      */
     public function create()
     {
-        return view('pages.create');
+        //
     }
 
     /**
@@ -37,19 +55,7 @@ class PageController extends Controller
      */
     public function store(Request $request)
     {
-        $validatedData = $request->validate([
-            'title'=> 'required|string|max:255',
-            'description' => 'required|string|max:255',    
-        ]);
-
-        $a= new Page;
-        $a->id = Auth::user()->id;
-        $a->title = $validatedData['title'];
-        $a->description = $validatedData['description'];
-        $a->save();
-
-        session()->flash('message', 'Page created successfully');
-        return view('pages.index');
+        //
     }
 
     /**
@@ -58,9 +64,9 @@ class PageController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Page $page)
+    public function show($id)
     {
-        return view('pages.show',['page' => $page]);
+        //
     }
 
     /**
@@ -92,10 +98,8 @@ class PageController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Page $page)
+    public function destroy($id)
     {
-        $page->delete();
-
-        return redirect()->route('pages.index')->with('message', 'Page was deleted');
+        //
     }
 }

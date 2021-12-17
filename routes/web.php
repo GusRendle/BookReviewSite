@@ -38,7 +38,9 @@ Route::delete('/pages/{page}',[PageController::class, 'destroy'])->name('pages.d
 Route::get('/reviews',[ReviewController::class, 'index'])->name('reviews.index');
 Route::get('/reviews/create',[ReviewController::class, 'create'])->name('reviews.create');
 Route::post('/reviews',[ReviewController::class, 'store'])->name('reviews.store');
+Route::put('/reviews/{review}/update',[ReviewController::class, 'update'])->name('reviews.update');
 Route::get('/reviews/{review}',[ReviewController::class, 'show'])->name('reviews.show');
+Route::get('/reviews/{review}/edit',[ReviewController::class, 'edit'])->name('reviews.edit');
 Route::delete('/reviews/{review}',[ReviewController::class, 'destroy'])->name('reviews.destroy');
 
 Route::get('/books',[BookController::class, 'index'])->name('books.index');

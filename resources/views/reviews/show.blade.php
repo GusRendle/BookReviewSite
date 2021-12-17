@@ -24,50 +24,65 @@
 </form>
 
 <h4> Comments </h4>
-<div id="root">
-    <ul>
-        <li v-for="comment in comments">@{{ comment.content }}</li>
-    </ul>
+        <div id="root">
+            <div>
+                <div id="comment" v-for="comment in comments">
+                    <div>
+                        <b>@{{ comment.user_id }} on @{{ comment.postDate }}</b>
+                    </div>
+                    <div>
+                        @{{ comment.content }}
+                    </div>
+                    <div>
+                        <a href="{{ route('reviews.edit',['review'=>$review->id]) }}" >
+                            <button type="button" class="label label-default pull-xs-right">Edit</button>
+                        </a>
+                        <a href="{{ route('reviews.edit',['review'=>$review->id]) }}" >
+                            <button type="button" class="label label-default pull-xs-right">Delete</button>
+                        </a>
+                    </div>
+                </div>
+            </div>
 
-    <h4> New Comment </h4>
-    <input type="text" id="input" v-model="newCommentContent">
-    <button @click="createComment">Post</button>
-</div>
+            <h4> New Comment </h4>
+            <input type="text" id="input" v-model="newCommentContent">
+            <button @click="createComment">Post</button>
+        </div>
 
-<script>
-    var app = new Vue({
-        el: "#root",
-        data: {
-            comments: [],
-            newCommentContent: '',
-        },
-        methods: {
-            createComment: function(){
-                axios.post("{{ route('api.comments.store',['poly'=>'review']) }}",
-                {
-                    content: this.newCommentContent,
-                    commentable_id: "{{$review->id}}"
-                })
-                .then(response => {
-                    this.comments.push(response.data);
-                    this.newCommentContent = '';
-                })
-                .catch (response=>{
-                    console.log(response);
-                })
-            }
-        },
-        mounted(){
-            axios.get("{{route('api.comments.index',['id'=>$review->id, 'poly'=>'review'])}}")
-            .then(response=>{
-                this.comments = response.data;
-            })
-            .catch(response=>{
-                console.log(response);
-            })
-        }
-    });
-</script>
+        <script>
+            var app = new Vue({
+                el: "#root",
+                data: {
+                    comments: [],
+                    newCommentContent: '',
+                },
+                methods: {
+                    createComment: function(){
+                        axios.post("{{ route('api.comments.store',['poly'=>'review']) }}",
+                        {
+                            content: this.newCommentContent,
+                            commentable_id: "{{$review->id}}"
+                        })
+                        .then(response => {
+                            this.comments.push(response.data);
+                            this.newCommentContent = '';
+                        })
+                        .catch (response=>{
+                            console.log(response);
+                        })
+                    }
+                },
+                mounted(){
+                    axios.get("{{route('api.comments.index',['id'=>$review->id, 'poly'=>'review'])}}")
+                    .then(response=>{
+                        this.comments = response.data;
+                    })
+                    .catch(response=>{
+                        console.log(response);
+                    })
+                }
+            });
+        </script>
 
 <a href="{{ route('books.show',['ISBN'=>$review->ISBN]) }}">Other reviews of {{$review->book->title}}</a>
 <a href="{{ route('pages.show',['page'=>$review->page->id]) }}">{{$review->page->user->name}}'s page</a>

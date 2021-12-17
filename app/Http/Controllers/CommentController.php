@@ -9,6 +9,11 @@ use Illuminate\Support\Carbon;
 
 class CommentController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth')->except('index', 'show');
+    }
+    
     public function apiIndex($id, $poly)
     {
         $comments = Comment::where([['commentable_id', $id],['commentable_type', 'App\Models\\' . $poly]])->get();

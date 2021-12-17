@@ -9,10 +9,6 @@ use Illuminate\Support\Carbon;
 
 class CommentController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware('auth')->except('index', 'show');
-    }
     
     public function apiIndex($id, $poly)
     {
@@ -37,6 +33,7 @@ class CommentController extends Controller
         $c->postDate = Carbon::now();
         $c->save();
         $c->user_id = Auth::user()->name;
+        $c->postDate = Carbon::now()->format('Y-m-d');
         return $c;
     }
 

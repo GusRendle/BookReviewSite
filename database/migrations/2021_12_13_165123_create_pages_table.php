@@ -17,6 +17,7 @@ class CreatePagesTable extends Migration
             $table->id();
             $table->string('title');
             $table->string('description');
+            $table->string('image_path')->nullable();
             $table->timestamps();
 
             $table->foreign('id')->references('id')->on('users')

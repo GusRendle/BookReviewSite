@@ -39,14 +39,28 @@ class PageController extends Controller
     {
         $validatedData = $request->validate([
             'title'=> 'required|string|max:255',
-            'description' => 'required|string|max:255',    
+            'description' => 'required|string|max:255', 
         ]);
 
-        $a= new Page;
-        $a->id = Auth::user()->id;
-        $a->title = $validatedData['title'];
-        $a->description = $validatedData['description'];
-        $a->save();
+        if ($request->hasFile('file')) {
+
+            $request->validate([
+                'file' => 'required|image|mimes:jpg,png,jpeg,gif,svg|max:2048',    
+            ]);
+
+            $request->file->store('pages', 'public');
+
+            $p = new Page;
+            $p->image_path = $request->file->hashName();
+
+        } else {
+            $p = new Page;
+        }
+
+        $p->id = Auth::user()->id;
+        $p->title = $validatedData['title'];
+        $p->description = $validatedData['description'];
+        $p->save();
 
         return redirect()->route('pages.index')->with('message', 'Page created successfully');
     }

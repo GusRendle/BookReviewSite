@@ -88,6 +88,7 @@
             <li> Email: {{$page->user->email}}</li>
             <li> Email Verified: {{$page->user->email_verified_at ?? 'Unknown'}}</li>
         </ul>
+        @if (Illuminate\Support\Facades\Auth::user() == $page->user)
         <div>
             <a href="{{ route('pages.edit',['page'=>$page->id]) }}" >
                 <button type="button" class="label label-default pull-xs-right">Edit</button>
@@ -96,6 +97,8 @@
                 <button type="button" class="label label-default pull-xs-right">Delete</button>
             </a>
         </div>
+        @endif
+        
     </div>
 
     <a href="{{ route('pages.edit',['page'=>$page->id]) }}" >

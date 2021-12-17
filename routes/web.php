@@ -24,7 +24,7 @@ Route::get('/', function () {
 
 
 Route::get('/dashboard', function () {
-    return view('dashboard');
+    return view('pages');
 })->middleware(['auth'])->name('dashboard');
 
 Route::get('/pages',[PageController::class, 'index'])->name('pages.index');

@@ -20,8 +20,8 @@ class PageController extends Controller
      */
     public function index()
     {
-        $pages = Page::all();
-        return view('pages.index', ['pages' => $pages]);
+        $pages = Page::paginate(10);
+        return view('pages.index', compact('pages'));
     }
 
     /**

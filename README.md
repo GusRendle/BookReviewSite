@@ -1,3 +1,10 @@
+## About this Project
+This project is a book review website made in Laravel 8. It was written for course CSC348 at Swansea University. 
+
+Users are able to log into the website to edit their profile as well as their personal page. Users are able to upload new reviews and books, as well as any supporting images. AJAX used to allow  users to dynamically comment on pages. Authentication and verification are used when users post content, ensuring users or only able to edit and delete data they created, or if the user has administrative control. 
+
+All data is stored in an SQL database. The project follows the MVC pattern. The website displays data in a professional manner, and is compliant with Web Content Accessibility Guidelines 2.0.
+
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
 
 <p align="center">
